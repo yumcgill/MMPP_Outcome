@@ -2,7 +2,7 @@ library(expm)
 library(gtools)
 library(ctmcd)
 ## Forward backwards for MMPP and outcome process
-## subdat is the dataset 
+## subdat is the dataset for one individual
 ## The window ends at time tend
 ## nu is the initial distribution
 ## In reality the first "event" happens at time 0 but since this is
@@ -67,7 +67,7 @@ SampleBackwards<-function(A,taus,tend,Q,lambda) {
   return(states)
 }
 
-
+### function to simulate the underlying Markov chain
 markov.sim<-function(subdat,a,Qe,lam,tend){
   n.stat<-ncol(Qe)
   Qew<-cbind(Qe-diag(lam),lam)
@@ -84,7 +84,7 @@ markov.sim<-function(subdat,a,Qe,lam,tend){
 
 
 
-
+### function to run one Gibbs iteration
 OneGibbsSampler<-function(Q,lam,nu,bet,tend,split.data) {
   ## Priors
   alambda=1; blambda=alambda/8
