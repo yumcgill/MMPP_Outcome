@@ -1,10 +1,10 @@
 source("functions.r")
-### starting values
 
+### starting values
 Q0<-matrix(c(0,1.5,1,0),byrow=T,nrow=state)
 diag(Q0)<- -rowSums(Q0)
 
-
+## split the data into list format
 split.data<-function(data){
   data <- data[order(data$id, data$tim.g),]
   split.data <- split(data, data$id)
@@ -26,7 +26,7 @@ mcmc.sam.lam[[1]]<-c(5,10)
 
 n.cov<-1
 N.iter<-10000
-##for Ex 1
+##for Example 1
 T.obs <- 5
 
 for(i in 2:N.iter){
